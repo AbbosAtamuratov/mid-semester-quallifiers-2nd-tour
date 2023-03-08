@@ -1,13 +1,11 @@
-package mid.sem.q.toys;
+package mid.sem.q.Toys;
 
-public abstract class Toy {
+public class Toy {
     private int id;
     private String name;
-    private int chance;
-
-    public Toy(String name, int chance){
+    public Toy(String name){
         this.name = name;
-        this.chance = chance;    }
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -18,9 +16,6 @@ public abstract class Toy {
     }
     public String getName() {
         return name;
-    }
-    public int getChance() {
-        return chance;
     }
 
     @Override

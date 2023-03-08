@@ -1,7 +1,11 @@
 package mid.sem.q;
 
+import mid.sem.q.Controller.CentralControl;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        CentralControl cc = new CentralControl();
+        cc.run();
     }
+
 }

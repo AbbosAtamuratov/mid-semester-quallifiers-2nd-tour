@@ -1,10 +1,10 @@
-package mid.sem.q.toys;
+package mid.sem.q.Toys;
 
-public class Robot extends Toy{
+public class Car extends Toy{
 
     private static int totalQTY = 0;
-    public Robot(int id, String name, int chance) {
-        super(name, chance);
+    public Car(int id, String name) {
+        super(name);
         setId(id);
         this.totalQTY++;
     }
@@ -12,9 +12,13 @@ public class Robot extends Toy{
     public static int getTotalQTY() {
         return totalQTY;
     }
+    public static void decreaseQTY() {
+        --totalQTY;
+    }
+
 
     @Override
-    public String toString() { return String.format("Робот:\n" +
+    public String toString() { return String.format("Машинка:\n" +
             "id: %d\n" +
             "%s\n" +
             "Всего: %d", getId(), super.toString(), getTotalQTY()); }
