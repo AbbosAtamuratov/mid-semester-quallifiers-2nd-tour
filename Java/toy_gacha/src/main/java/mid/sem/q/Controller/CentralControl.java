@@ -5,6 +5,7 @@ import mid.sem.q.SpinningWheel.SpinningWheel;
 import mid.sem.q.Toys.Toy;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class CentralControl {
 
@@ -15,10 +16,12 @@ public class CentralControl {
         boolean isRunning = true;
         String userInput;
         Toy lostSpace = new Toy("Вы проиграли");
+        List<String> allToys = tm.readToys();
         wheel.getDp().greet();
 
-        tm.fillTheWheel(wheel, tm.readToys());
-        while (isRunning) {
+        allToys.forEach(line -> System.out.println(line));
+        wheel.setSectors(tm.fillTheWheel(allToys));
+        /*while (isRunning) {
             wheel.getDp().menu();
             userInput = wheel.getDp().input("Введите номер команды: ");
             int command = Integer.parseInt(userInput);
@@ -44,6 +47,7 @@ public class CentralControl {
                     wheel.getDp().show("Команда не распознана. Попробуйте ещё раз...");
                     break;
             }
-        }
+        }*/
+        wheel.getSectors().forEach(t -> System.out.println(t));
     }
 }

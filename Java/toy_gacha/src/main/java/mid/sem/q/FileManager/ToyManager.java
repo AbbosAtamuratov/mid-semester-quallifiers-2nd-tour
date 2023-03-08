@@ -16,17 +16,20 @@ public class ToyManager {
 
             String line = reader.readLine();
             if (line != null)
-                while (line != null){
+                lines.add(line);
+            while (line != null){
+                line = reader.readLine();
+                if (line != null)
                     lines.add(line);
-                    line = reader.readLine();
-                }
+            }
+            reader.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
         return lines;
     }
 
-    public void fillTheWheel(SpinningWheel sw, List<String> linedToys){
+    public List<Toy> fillTheWheel(List<String> linedToys){
         List<Toy> toys = new ArrayList<>();
         ToyFactory factory = new ToyFactory();
         linedToys.forEach(line -> {
@@ -39,7 +42,7 @@ public class ToyManager {
                 throw new RuntimeException(e);
             }
         });
-        sw.setSectors(toys);
+        return toys;
     }
 
 }
