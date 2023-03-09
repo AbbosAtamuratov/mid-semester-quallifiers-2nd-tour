@@ -16,17 +16,14 @@ public class ToyFactory implements Producing{
         return new Car(id, toyName);
     }
 
-    public Toy generateToy(String toyType, int id, String toyName) throws Exception{
+    public Toy generateToy(String toyType, int id, String toyName){
         switch (toyType) {
             case "Робот":
                 return getARobot(id, toyName);
             case "Плюшевая игрушка":
                 return getAPlushy(id, toyName);
-            case "Машинка":
-                return getACar(id, toyName);
             default:
-                System.out.println("Что-то пошло не так..");
-                throw new ClassNotFoundException();
+                return getACar(id, toyName);
         }
     }
 }

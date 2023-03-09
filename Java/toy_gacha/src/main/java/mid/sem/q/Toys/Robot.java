@@ -4,8 +4,7 @@ public class Robot extends Toy{
 
     private static int totalQTY = 0;
     public Robot(int id, String name) {
-        super(name);
-        setId(id);
+        super(name, id);
         this.totalQTY++;
     }
 

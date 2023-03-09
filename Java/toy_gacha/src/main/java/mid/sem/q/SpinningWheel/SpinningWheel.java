@@ -23,25 +23,25 @@ public class SpinningWheel {
         return dp;
     }
 
-    public void addToy (Toy toy){
+    public void addToy(Toy toy) {
         this.sectors.add(toy);
         dp.show(String.format("%s успешно добавлен(-а) на барабан", toy.getName()));
     }
 
-    public void popToy(int index){
-        Toy loseSpot = new Toy("Вы проиграли");
+    public void popToy(int index) {
+        Toy loseSpot = new Toy("Вы проиграли", 0);
         this.sectors.remove(index);
         this.sectors.add(index, loseSpot);
     }
 
-    public int spinIt(){
+    public int spinIt() {
         for (int i = 0; i < new Random().nextInt(5); i++) {
             dp.show("Барабан крутится...");
         }
-        return (int)(360*Math.random());
+        return (int) (360 * Math.random());
     }
 
-    public Toy getThePrize(int spinResult){
+    public Toy getThePrize(int spinResult) {
         int winning_segment = (int) Math.floor(spinResult / (360.0 / getSectors().size()));
         Toy prize = getSectors().get(winning_segment);
         popToy(winning_segment);
@@ -59,10 +59,11 @@ public class SpinningWheel {
             Robot.decreaseQTY();
         } else if (isCar) {
             Car.decreaseQTY();
-        } else { }
+        } else {
+        }
     }
 
-    public HashMap<String, Integer> getQTYs(List<Toy> toys){
+    public HashMap<String, Integer> getQTYs(List<Toy> toys) {
         HashMap<String, Integer> QTYs = new HashMap<>();
         int robots = Robot.getTotalQTY();
         int cars = Car.getTotalQTY();
@@ -71,5 +72,15 @@ public class SpinningWheel {
         QTYs.put("Всего машинок: ", cars);
         QTYs.put("Всего плюшевых игрушек: ", plushies);
         return QTYs;
+    }
+
+    public void fillTheWheel(List<String> linedToys) {
+        ToyFactory factory = new ToyFactory();
+        linedToys.forEach(line -> {
+            String[] toy_parameters = line.split("::");
+            Toy newToy = factory.generateToy(toy_parameters[0].trim(),
+                    Integer.parseInt(toy_parameters[1].trim()), toy_parameters[2].trim());
+            sectors.add(newToy);
+        });
     }
 }

@@ -4,8 +4,7 @@ public class Car extends Toy{
 
     private static int totalQTY = 0;
     public Car(int id, String name) {
-        super(name);
-        setId(id);
+        super(name, id);
         this.totalQTY++;
     }
 

@@ -4,8 +4,7 @@ public class Plushy extends Toy{
 
     private static int totalQTY = 0;
     public Plushy(int id, String name) {
-        super(name);
-        setId(id);
+        super(name, id);
         this.totalQTY++;
     }
 

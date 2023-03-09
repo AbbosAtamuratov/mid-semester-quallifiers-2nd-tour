@@ -9,19 +9,23 @@ import java.util.List;
 
 public class CentralControl {
 
-    private ToyManager tm = new ToyManager();
-    private SpinningWheel wheel = new SpinningWheel();
+    private ToyManager tm;
+    private SpinningWheel wheel;
+
+    public CentralControl(ToyManager tm, SpinningWheel wheel) {
+        this.tm = tm;
+        this.wheel = wheel;
+    }
 
     public void run(){
         boolean isRunning = true;
         String userInput;
-        Toy lostSpace = new Toy("Вы проиграли");
+        Toy lostSpace = new Toy("Вы проиграли", 0);
         List<String> allToys = tm.readToys();
+        wheel.fillTheWheel(allToys);
         wheel.getDp().greet();
 
-        allToys.forEach(line -> System.out.println(line));
-        wheel.setSectors(tm.fillTheWheel(allToys));
-        /*while (isRunning) {
+        while (isRunning) {
             wheel.getDp().menu();
             userInput = wheel.getDp().input("Введите номер команды: ");
             int command = Integer.parseInt(userInput);
@@ -36,8 +40,10 @@ public class CentralControl {
                     }
                     break;
                 case 2:
+                    wheel.getDp().show("\n");
                     HashMap<String, Integer> totals = wheel.getQTYs(wheel.getSectors());
                     totals.forEach((k,v) -> wheel.getDp().show(String.format("%s%d", k,v)));
+                    wheel.getDp().show("\n");
                     break;
                 case 3:
                     isRunning = false;
@@ -47,7 +53,7 @@ public class CentralControl {
                     wheel.getDp().show("Команда не распознана. Попробуйте ещё раз...");
                     break;
             }
-        }*/
-        wheel.getSectors().forEach(t -> System.out.println(t));
+        }
+
     }
 }
